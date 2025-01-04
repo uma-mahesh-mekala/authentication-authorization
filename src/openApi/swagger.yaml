@@ -1,0 +1,69 @@
+openapi: 3.0.3
+info:
+  title: Authentication and Authorization API
+  description:
+    This service demonstrate how basic authentication and authorization
+    happens in real world applications.
+  contact:
+    name: Uma Mahesh
+    email: support@gmail.com
+  version: 1.0.0
+
+tags:
+  - name: Users
+    description: Using this a user can signup, login and retrieve some user information
+paths:
+  /users/signup:
+    post:
+      tags:
+        - Users
+      summary: Adds a new user in to the system
+      description: Any user who wants to use the services of the application can
+        register in to the system using their emailId and password
+      operationId: userSignup
+      requestBody:
+        description:
+          The body of the request should follow the below mentioned schema
+          and it should be in the specifiend content type
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/userSignupLoginRequest"
+      responses:
+        "200":
+          description: "success response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/userSignupResponse"
+
+components:
+  schemas:
+    userSignupLoginRequest:
+      type: object
+      description: request schema fpr the user signup or login
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          description: email address of the user
+          minLength: 5
+          maxLength: 50
+          example: example@gmail.com
+        password:
+          type: string
+          description: password for the account
+          minLength: 8
+          maxLength: 15
+          pattern: '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])'
+          example: Password@123
+    userSignupResponse:
+      type: object
+      description: success message if user registered successfully
+      properties:
+        message:
+          type: string
+          example: "user registered successfully"
