@@ -2,6 +2,11 @@ import { pbkdf2Sync } from "node:crypto";
 import fastifyPlugin from "fastify-plugin";
 
 const cryptoPlugin = async (fastify) => {
+	/**
+	 *
+	 * @param {string} data
+	 * @returns {string} hash
+	 */
 	const generateHash = (data) => {
 		try {
 			const key = pbkdf2Sync(data, fastify.config.SALT, 10000, 32, "sha512");
