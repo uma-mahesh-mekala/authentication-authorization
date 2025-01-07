@@ -9,7 +9,7 @@ const checkEmailInDB = async (email, fastifyInstance) => {
 		};
 		const fetchUserQueryResponse = await pgClient.query(fetchUserQuery);
 
-		return fetchUserQueryResponse.rows.length;
+		return fetchUserQueryResponse;
 	} catch (error) {
 		fastifyInstance.log.error("There is error fetching data from the database");
 		throw error;
