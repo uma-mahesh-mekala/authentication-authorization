@@ -36,12 +36,36 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/userSignupResponse"
+  /users/login:
+    post:
+      tags:
+        - Users
+      summary: verify the user credential like email and password
+      description:
+        Any user who wants to use the services of the application need to
+        login in to the system to verify their their emailId and password
+      operationId: userLogin
+      requestBody:
+        description:
+          The body of the request should follow the below mentioned schema
+          and it should be in the specifiend content type
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/userSignupLoginRequest"
+      responses:
+        "200":
+          description: "success response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/userSignupResponse"
 
 components:
   schemas:
     userSignupLoginRequest:
       type: object
-      description: request schema fpr the user signup or login
+      description: request schema for the user signup or login
       required:
         - email
         - password
@@ -67,3 +91,10 @@ components:
         message:
           type: string
           example: "user registered successfully"
+    userLoginResponse:
+      type: object
+      description: success message if user logged in successfully
+      properties:
+        message:
+          type: string
+          example: "user logged in successfully"

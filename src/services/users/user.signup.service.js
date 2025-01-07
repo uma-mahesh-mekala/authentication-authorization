@@ -11,7 +11,7 @@ const userSignup = async (request, fastifyInstance) => {
 
 	try {
 		const user = await fetchUserFromDB(email, fastifyInstance);
-		if (user) {
+		if (user.rows.length) {
 			response = {
 				statusCode: 400,
 				body: {
