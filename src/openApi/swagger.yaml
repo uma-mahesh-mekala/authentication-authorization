@@ -59,7 +59,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/userSignupResponse"
+                $ref: "#/components/schemas/userLoginResponse"
 
 components:
   schemas:
@@ -98,3 +98,6 @@ components:
         message:
           type: string
           example: "user logged in successfully"
+        accessToken:
+          type: string
+          example: whfuwehfuihw
