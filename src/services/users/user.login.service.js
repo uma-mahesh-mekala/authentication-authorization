@@ -25,10 +25,15 @@ const verifyUser = async (request, fastifyInstance) => {
 			return responseObject;
 		}
 
+		const { user_id: userId } = user.rows[0];
+
+		const accessToken = await fastifyInstance.jwt.sign({ userId, email });
+
 		responseObject = {
 			statusCode: 200,
 			body: {
 				message: "user successfully logged in",
+				accessToken,
 			},
 		};
 

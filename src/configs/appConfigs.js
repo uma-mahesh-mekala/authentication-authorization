@@ -11,6 +11,7 @@ const configSchema = {
 		"PGPORT",
 		"PGHOST",
 		"PGDATABASE",
+		"APP_SECRET",
 	],
 	properties: {
 		PORT: {
@@ -44,6 +45,10 @@ const configSchema = {
 		PGDATABASE: {
 			type: "string",
 			description: "database name",
+		},
+		APP_SECRET: {
+			type: "string",
+			description: "Application secret for token verification",
 		},
 	},
 };

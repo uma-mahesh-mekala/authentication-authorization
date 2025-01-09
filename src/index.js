@@ -5,6 +5,7 @@ import { dirname, join } from "node:path";
 import fastifyOpenapiGlue from "fastify-openapi-glue";
 import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUi from "@fastify/swagger-ui";
+import fastifyJwt from "@fastify/jwt";
 import handlers from "./openApi/index.js";
 
 const fileName = fileURLToPath(import.meta.url);
@@ -31,6 +32,12 @@ const buildServer = async () => {
 		})
 		.register(fastifyAutoload, {
 			dir: join(dirName, "plugins"),
+		})
+		.register(fastifyJwt, {
+			secret: "secret",
+			sign: {
+				expiresIn: 3600,
+			},
 		})
 		.register(fastifySwagger, {
 			mode: "static",
